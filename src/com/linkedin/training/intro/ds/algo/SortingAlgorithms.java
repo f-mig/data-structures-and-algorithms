@@ -2,9 +2,9 @@ package com.linkedin.training.intro.ds.algo;
 
 import java.util.Arrays;
 
-public class SortingAlgorithms {
+class SortingAlgorithms {
 
-    public void bubbleSort(int[] nums) {
+    void bubbleSort(int[] nums) {
 
         int upperIdx = nums.length;
 
@@ -23,7 +23,7 @@ public class SortingAlgorithms {
 
     }
 
-    public void selectionSort(int[] nums) {
+    void selectionSort(int[] nums) {
 
         for (int i = 0; i < nums.length - 1; i++) {
 
@@ -51,35 +51,36 @@ public class SortingAlgorithms {
         }
     }
 
-    public void insertionSort(int[] nums) {
+    void insertionSort(int[] nums) {
 
-        for (int i = 0; i < nums.length; i++) {
+        int lastIdx = 0;
+        int[] targetArray = new int[nums.length];
+        Arrays.fill(targetArray, -1);
 
-            int topIdx = i;
-            for (int j = topIdx; j >= 0 ; j--) {
-                if (nums[i] < nums[j]){
-                    final boolean isElemOnLeft = j - 1 >= 0;
-                    if (isElemOnLeft && nums[i] > nums[j - 1]) {
-                        final int temp = nums[j];
-                        nums[j] = nums[i];
-                        nums[i] = temp;
-                        continue;
+        System.out.print("Before sorting:");
+        printArray(nums);
+
+        for (int num : nums) {
+            for (int j = lastIdx; j >= 0; j--) {
+
+                if (targetArray[j] == -1){
+                    targetArray[j] = num;
+                } else {
+                    if (num >= targetArray[j]) {
+                        break;
                     }
+                    targetArray[j + 1] = targetArray[j];
+                    targetArray[j] = num;
+                    lastIdx++;
                 }
             }
         }
+        System.out.print("After sorting:");
+        printArray(targetArray);
     }
 
-    public void mergeSort(int[] first, int[] second) {
-
-        final int[] merged = new int[first.length + second.length];
-
-        int firstArrIdx = 0;
-        int secondArrIdx = 0;
-
-        while (firstArrIdx < first.length && secondArrIdx < second.length) {
-
-        }
+    void mergeSort(int[] first, int[] second) {
+        //TODO
     }
 
     private void printArray(int[] nums) {

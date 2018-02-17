@@ -23,4 +23,10 @@ public class SortingAlgorithmsTest {
         final int[] testArray = new int[]{10, 2, 7, 5, 1};
         sortingAlgos.selectionSort(testArray);
     }
+
+    @Test
+    public void insertionSort() {
+        final int[] testArray = new int[]{10, 2, 7, 5, 1};
+        sortingAlgos.insertionSort(testArray);
+    }
 }
