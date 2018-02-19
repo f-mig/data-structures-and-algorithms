@@ -1,7 +1,14 @@
 package com.linkedin.training.intro.ds.algo;
 
-import java.util.Arrays;
+import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ *
+ */
 class SortingAlgorithms {
 
     void bubbleSort(int[] nums) {
@@ -18,8 +25,7 @@ class SortingAlgorithms {
                 }
             }
         }
-        System.out.println("Sorted array = ");
-        printArray(nums);
+        System.out.println("Sorted array = " + Arrays.toString(nums));
 
     }
 
@@ -36,7 +42,7 @@ class SortingAlgorithms {
             }
             System.out.println(String.format("Before swapping: [i=%d][nums[i]=%d][smallestIdx=%d][nums[smallestIdx]=%d]",
                     i, nums[i], smallestIdx, nums[smallestIdx]));
-            printArray(nums);
+            System.out.println(Arrays.toString(nums));
 
             System.out.println("************************");
 
@@ -45,7 +51,7 @@ class SortingAlgorithms {
             nums[smallestIdx] = temp;
 
             System.out.print("After swapping: ");
-            printArray(nums);
+            System.out.println(Arrays.toString(nums));
 
             System.out.println("************************");
         }
@@ -57,8 +63,7 @@ class SortingAlgorithms {
         int[] targetArray = new int[nums.length];
         Arrays.fill(targetArray, -1);
 
-        System.out.print("Before sorting:");
-        printArray(nums);
+        System.out.print("Before sorting:" + Arrays.toString(nums));
 
         for (int num : nums) {
             for (int j = lastIdx; j >= 0; j--) {
@@ -75,21 +80,30 @@ class SortingAlgorithms {
                 }
             }
         }
-        System.out.print("After sorting:");
-        printArray(targetArray);
+        System.out.print("After sorting:" + Arrays.toString(targetArray));
     }
 
-    void mergeSort(int[] first, int[] second) {
-        //TODO
+    void mergeSort(Integer[] nums) {
+
+        final List<Integer[]> arrays = new ArrayList<>(nums.length);
+
+        split(arrays, nums, 0, nums.length);
+
+        System.out.println(arrays.toString());
     }
 
-    private void printArray(int[] nums) {
+    private void split(List<Integer[]> arrays, Integer[] nums, int start, int end) {
 
-        final StringBuilder sb = new StringBuilder();
-        for (int n : nums) {
-            sb.append(n).append(",");
+        final int middle = (start + end) / 2;
+
+        System.out.println("[Array=" + Arrays.toString(nums) + "][start=" + start + "][middle=" + middle + "]" +
+                "[end=" + end + "]");
+
+        if (nums.length == 1){
+            arrays.add(nums);
+            return;
         }
-        sb.setLength(sb.length() - 1);
-        System.out.println(sb.toString());
+        split(arrays, Arrays.copyOfRange(nums, start, middle + 1), start, middle);
+        split(arrays, Arrays.copyOfRange(nums, middle == 0 ? 1 : middle, end + 1), middle, end);
     }
 }

@@ -29,4 +29,22 @@ public class SortingAlgorithmsTest {
         final int[] testArray = new int[]{10, 2, 7, 5, 1};
         sortingAlgos.insertionSort(testArray);
     }
+
+    @Test
+    public void mergeSort() {
+        final Integer[] testArray = new Integer[]{10, 2, 7, 5, 1};
+        sortingAlgos.mergeSort(testArray);
+    }
+
+    @Test
+    public void testNums() {
+
+        final int n1 = 7;
+        final int n2 = 4;
+        final int resultNoFloor = (7 + 4) / 2;
+        final double resultFloor = Math.floor((n1 + n2) / 2);
+
+        System.out.println("result without floor = " + resultNoFloor);
+        System.out.println("result with floor = " + resultFloor);
+    }
 }
